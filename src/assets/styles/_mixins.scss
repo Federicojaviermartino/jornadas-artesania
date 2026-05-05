@@ -1,0 +1,109 @@
+@use "sass:math";
+@use "sass:color";
+
+// Funciones Sass
+
+/// Convierte un valor en pixeles a rem
+@function to-rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+/// Devuelve un color con transparencia para usar como overlay
+@function overlay-color($base, $opacity: 0.6) {
+  @return rgba($base, $opacity);
+}
+
+/// Devuelve un color de texto adecuado segun la luminancia del fondo
+@function text-contrast($bg) {
+  $lightness: color.channel($bg, "lightness", $space: hsl);
+
+  @if $lightness > 55% {
+    @return $color-text;
+  } @else {
+    @return $color-white;
+  }
+}
+
+// Mixins
+
+/// Helper responsive (mobile first) para los breakpoints del proyecto
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "sm" {
+    @media (min-width: $bp-sm) {
+      @content;
+    }
+  } @else if $breakpoint == "md" {
+    @media (min-width: $bp-md) {
+      @content;
+    }
+  } @else if $breakpoint == "lg" {
+    @media (min-width: $bp-lg) {
+      @content;
+    }
+  } @else if $breakpoint == "xl" {
+    @media (min-width: $bp-xl) {
+      @content;
+    }
+  }
+}
+
+/// Contenedor centrado con ancho maximo
+@mixin container {
+  width: 100%;
+  max-width: $max-width;
+  padding-right: $spacing-lg;
+  padding-left: $spacing-lg;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/// Espaciado vertical para secciones
+@mixin section-padding {
+  padding-top: $spacing-2xl;
+  padding-bottom: $spacing-2xl;
+
+  @include respond-to("md") {
+    padding-top: $spacing-3xl;
+    padding-bottom: $spacing-3xl;
+  }
+}
+
+/// Efecto de elevacion suave al pasar el cursor
+@mixin hover-lift($scale: 1.02) {
+  transition: transform $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-4px) scale($scale);
+  }
+}
+
+/// Estilo base para titulares con la fuente serif
+@mixin heading($size: $font-size-2xl) {
+  font-family: $font-family-heading;
+  font-size: $size;
+  font-weight: 700;
+  line-height: $line-height-heading;
+}
+
+/// Oculta visualmente un elemento manteniendolo accesible para lectores de pantalla
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
+}
+
+/// Activa el contexto de containment para usar container queries
+@mixin container-context($name: null) {
+  @if $name {
+    container-name: $name;
+  }
+
+  container-type: inline-size;
+}

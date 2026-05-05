@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Jornadas de Artesania: tres dias de talleres, charlas y exposiciones sobre los oficios artesanos tradicionales. Organizadas con el Ayuntamiento."
+    />
+    <link rel="stylesheet" type="text/css" href="./assets/styles/main.scss" />
+    <script type="module" src="./assets/scripts/main.js"></script>
+    <title>Jornadas de Artesania | Tres dias dedicados al oficio</title>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <include src="./views/header.html"></include>
+
+    <main id="main-content">
+      <!-- Cartel principal -->
+      <section class="home-hero" aria-labelledby="hero-title">
+        <div class="home-hero__container">
+          <div class="home-hero__poster">
+            <span class="home-hero__badge">
+              <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+              12 al 14 de junio de 2026
+            </span>
+
+            <h1 id="hero-title" class="home-hero__title">
+              Jornadas de <em>Artesania</em>
+            </h1>
+
+            <p class="home-hero__lead">
+              Tres dias para descubrir oficios milenarios, conversar con maestras y maestros artesanos, y sumarse a talleres practicos en el corazon de la ciudad.
+            </p>
+
+            <dl class="home-hero__meta">
+              <dt>Sede</dt>
+              <dd>Casa de Cultura</dd>
+              <dt>Aforo</dt>
+              <dd>250 plazas por sesion</dd>
+              <dt>Entrada</dt>
+              <dd>Gratuita con inscripcion previa</dd>
+            </dl>
+
+            <div class="home-hero__cta">
+              <a href="./contacto.html" class="btn btn-primary btn-lg">
+                <i class="fas fa-ticket-alt me-2" aria-hidden="true"></i>
+                Reservar plaza
+              </a>
+              <a href="./ponentes.html" class="btn btn-outline-light btn-lg">
+                Ver ponentes
+              </a>
+            </div>
+
+            <div class="home-hero__art" aria-hidden="true">
+              <img src="./assets/images/poster.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Banda de informacion practica -->
+      <section class="home-info" aria-labelledby="info-title">
+        <div class="home-info__container">
+          <h2 id="info-title" class="visually-hidden">Informacion practica</h2>
+          <div class="home-info__grid">
+            <article class="home-info__item">
+              <i class="fas fa-clock" aria-hidden="true"></i>
+              <div>
+                <h3>Horarios</h3>
+                <p>De 10:00 a 21:00 los tres dias. Talleres en franjas de mañana y tarde.</p>
+              </div>
+            </article>
+            <article class="home-info__item">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              <div>
+                <h3>Como llegar</h3>
+                <p>Casa de Cultura, plaza Mayor. Aparcamiento publico a 200 metros.</p>
+              </div>
+            </article>
+            <article class="home-info__item">
+              <i class="fas fa-universal-access" aria-hidden="true"></i>
+              <div>
+                <h3>Accesibilidad</h3>
+                <p>Acceso adaptado, sillas de ruedas disponibles y bucle magnetico en sala principal.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tarjetas destacadas con container queries -->
+      <section class="home-highlights" aria-labelledby="highlights-title">
+        <div class="home-highlights__container">
+          <header class="section-title">
+            <h2 id="highlights-title" class="section-title__heading">Tres dias, tres miradas</h2>
+            <hr class="section-title__line" />
+            <p class="section-title__description">
+              Cada jornada se centra en una familia de oficios. Mira el avance del programa y elige por donde quieres empezar.
+            </p>
+          </header>
+
+          <div class="home-highlights__grid">
+            <article class="home-highlight">
+              <div class="home-highlight__media">
+                <img
+                  src="./assets/images/highlight-fire.jpg"
+                  alt="Manos de un alfarero modelando una pieza al torno"
+                  loading="lazy"
+                />
+              </div>
+              <div class="home-highlight__body">
+                <span class="home-highlight__tag">Viernes 12</span>
+                <h3 class="home-highlight__title">Oficios del fuego</h3>
+                <p class="home-highlight__text">
+                  Alfareria, vidrio soplado y forja. Demostraciones en directo a cargo de cinco talleres locales.
+                </p>
+              </div>
+            </article>
+
+            <article class="home-highlight">
+              <div class="home-highlight__media">
+                <img
+                  src="./assets/images/highlight-fiber.jpg"
+                  alt="Tejedora trabajando en un telar de madera"
+                  loading="lazy"
+                />
+              </div>
+              <div class="home-highlight__body">
+                <span class="home-highlight__tag">Sabado 13</span>
+                <h3 class="home-highlight__title">Tejidos y fibras</h3>
+                <p class="home-highlight__text">
+                  Encajes, tapiz, cesteria y bordado tradicional. Talleres familiares de iniciacion para todas las edades.
+                </p>
+              </div>
+            </article>
+
+            <article class="home-highlight">
+              <div class="home-highlight__media">
+                <img
+                  src="./assets/images/highlight-wood.jpg"
+                  alt="Carpintero trabajando una pieza con gubias"
+                  loading="lazy"
+                />
+              </div>
+              <div class="home-highlight__body">
+                <span class="home-highlight__tag">Domingo 14</span>
+                <h3 class="home-highlight__title">Madera y piedra</h3>
+                <p class="home-highlight__text">
+                  Carpinteria fina, talla y canteria. Mesa redonda de cierre con artesanas y artesanos de toda la provincia.
+                </p>
+              </div>
+            </article>
+
+            <article class="home-highlight">
+              <div class="home-highlight__media">
+                <img
+                  src="./assets/images/highlight-market.jpg"
+                  alt="Mercado de artesania al aire libre"
+                  loading="lazy"
+                />
+              </div>
+              <div class="home-highlight__body">
+                <span class="home-highlight__tag">Todos los dias</span>
+                <h3 class="home-highlight__title">Mercado artesano</h3>
+                <p class="home-highlight__text">
+                  Mas de 30 puestos en la plaza Mayor con piezas unicas hechas a mano. Acceso libre.
+                </p>
+              </div>
+            </article>
+
+            <article class="home-highlight">
+              <div class="home-highlight__media">
+                <img
+                  src="./assets/images/highlight-kids.jpg"
+                  alt="Niños pintando en un taller infantil"
+                  loading="lazy"
+                />
+              </div>
+              <div class="home-highlight__body">
+                <span class="home-highlight__tag">Sabado y domingo</span>
+                <h3 class="home-highlight__title">Espacio infantil</h3>
+                <p class="home-highlight__text">
+                  Taller permanente para niños de 5 a 12 años. Cada sesion termina con una pieza para llevar a casa.
+                </p>
+              </div>
+            </article>
+
+            <article class="home-highlight">
+              <div class="home-highlight__media">
+                <img
+                  src="./assets/images/highlight-talks.jpg"
+                  alt="Sala llena en una conferencia"
+                  loading="lazy"
+                />
+              </div>
+              <div class="home-highlight__body">
+                <span class="home-highlight__tag">Tarde-noche</span>
+                <h3 class="home-highlight__title">Charlas abiertas</h3>
+                <p class="home-highlight__text">
+                  Conferencias breves, de 30 minutos cada una, sobre el futuro de los oficios y las nuevas generaciones.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Carrusel promocional (componente Bootstrap) -->
+      <section class="home-carousel" aria-labelledby="carousel-title">
+        <div class="container py-5">
+          <h2 id="carousel-title" class="visually-hidden">Galeria destacada</h2>
+          <div
+            id="home-carousel"
+            class="carousel slide carousel-fade"
+            data-bs-ride="carousel"
+            data-bs-interval="5000"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#home-carousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Imagen 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#home-carousel"
+                data-bs-slide-to="1"
+                aria-label="Imagen 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#home-carousel"
+                data-bs-slide-to="2"
+                aria-label="Imagen 3"
+              ></button>
+            </div>
+            <div class="carousel-inner rounded-3">
+              <div class="carousel-item active">
+                <img
+                  src="./assets/images/carousel-1.jpg"
+                  class="d-block w-100"
+                  alt="Manos trabajando arcilla"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h3>Tradicion en cada pieza</h3>
+                  <p>Mas de cuarenta talleres locales preparan piezas exclusivas para las jornadas.</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="./assets/images/carousel-2.jpg"
+                  class="d-block w-100"
+                  alt="Telar tradicional"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h3>Saber compartido</h3>
+                  <p>Maestras y maestros artesanos comparten tecnica y experiencia en sesiones abiertas.</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="./assets/images/carousel-3.jpg"
+                  class="d-block w-100"
+                  alt="Mercado artesano al atardecer"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h3>El oficio en la plaza</h3>
+                  <p>Tres tardes de mercado al aire libre con musica en vivo y degustaciones.</p>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#home-carousel"
+              data-bs-slide="prev"
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#home-carousel"
+              data-bs-slide="next"
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <include src="./views/footer.html"></include>
+  </body>
+</html>

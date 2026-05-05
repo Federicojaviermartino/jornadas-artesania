@@ -1,0 +1,238 @@
+// Pagina de articulo
+// Aqui se concentran las pseudoclases :has(), :is() y :where(),
+// las container queries y las capas de cascada.
+
+@layer reset, structure, typography, components;
+
+@layer structure {
+  .article {
+    @include section-padding;
+  }
+
+  .article__container {
+    @include container;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+
+    @include respond-to("lg") {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+    }
+  }
+
+  .article__main {
+    @include container-context(article-main);
+  }
+
+  .article__aside {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+}
+
+@layer typography {
+  // :where() mantiene la especificidad a cero, asi cualquier
+  // regla posterior puede sobreescribirla sin esfuerzo
+  :where(.article__main) {
+    color: $color-text;
+
+    p {
+      margin-bottom: $spacing-sm;
+      font-size: $font-size-lg;
+      line-height: 1.7;
+    }
+  }
+
+  // :is() agrupa los titulares dentro del cuerpo del articulo
+  .article__main :is(h2, h3, h4) {
+    margin-top: $spacing-xl;
+    margin-bottom: $spacing-sm;
+    color: $color-ink;
+  }
+
+  .article__main h2 {
+    font-size: $font-size-2xl;
+  }
+
+  .article__main h3 {
+    font-size: $font-size-xl;
+  }
+
+  .article__main blockquote {
+    padding: $spacing-md $spacing-lg;
+    margin: $spacing-lg 0;
+    font-family: $font-family-heading;
+    font-size: $font-size-xl;
+    font-style: italic;
+    line-height: 1.4;
+    color: $color-wood;
+    background-color: $color-cream;
+    border-left: 5px solid $color-clay;
+    border-radius: 0 $site-radius $site-radius 0;
+
+    cite {
+      display: block;
+      margin-top: $spacing-xs;
+      font-family: $font-family-body;
+      font-size: $font-size-base;
+      font-style: normal;
+      font-weight: 600;
+      color: $color-text-light;
+
+      &::before {
+        content: "— ";
+      }
+    }
+  }
+
+  .article__main :is(ul, ol) {
+    padding-left: $spacing-lg;
+    margin-bottom: $spacing-md;
+
+    li {
+      margin-bottom: $spacing-xs;
+      font-size: $font-size-lg;
+      line-height: 1.6;
+    }
+  }
+
+  .article__main ul li::marker {
+    color: $color-clay;
+  }
+
+  .article__main ol li::marker {
+    font-weight: 700;
+    color: $color-clay-dark;
+  }
+}
+
+@layer components {
+  .article__hero {
+    margin-bottom: $spacing-xl;
+    overflow: hidden;
+    border-radius: $site-radius-lg;
+    box-shadow: $shadow-md;
+
+    img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+  }
+
+  .article__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    align-items: center;
+    margin-bottom: $spacing-md;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+
+  .article__category {
+    display: inline-block;
+    padding: 2px 12px;
+    font-weight: 600;
+    color: $color-white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: $color-clay;
+    border-radius: 999px;
+  }
+
+  .article__lead {
+    padding-bottom: $spacing-md;
+    margin-bottom: $spacing-lg;
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: $color-text;
+    border-bottom: 2px solid $color-border;
+  }
+
+  // :has() permite estilar el <figure> cuando contiene un <figcaption>,
+  // sin necesidad de añadir clases extra ni javascript
+  .article__main figure {
+    margin: $spacing-lg 0;
+  }
+
+  .article__main figure img {
+    width: 100%;
+    border-radius: $site-radius;
+  }
+
+  .article__main figure:has(figcaption) {
+    padding: $spacing-sm;
+    background-color: $color-cream;
+    border-radius: $site-radius-lg;
+    box-shadow: $shadow-sm;
+  }
+
+  .article__main figure:has(figcaption) figcaption {
+    padding: $spacing-sm $spacing-xs 0;
+    font-size: $font-size-sm;
+    font-style: italic;
+    color: $color-text-muted;
+    text-align: center;
+  }
+
+  // :has() aplicado a los parrafos que llevan algun enfasis (em)
+  .article__main p:has(em) {
+    color: $color-wood;
+  }
+
+  // Widgets de la barra lateral
+  .widget {
+    padding: $spacing-md;
+    background-color: $color-cream;
+    border: 1px solid $color-border;
+    border-radius: $site-radius-lg;
+
+    &__title {
+      padding-bottom: $spacing-xs;
+      margin: 0 0 $spacing-sm;
+      font-size: $font-size-lg;
+      color: $color-ink;
+      border-bottom: 2px solid $color-clay;
+    }
+
+    &__list {
+      padding-left: 0;
+      margin: 0;
+      list-style: none;
+
+      li + li {
+        padding-top: $spacing-xs;
+        margin-top: $spacing-xs;
+        border-top: 1px solid $color-border;
+      }
+    }
+  }
+
+  // La barra lateral cambia de aspecto cuando contiene un widget destacado
+  .article__aside:has(.widget--featured) {
+    padding-left: $spacing-md;
+    border-left: 3px solid $color-clay;
+  }
+
+  .widget--featured {
+    background: linear-gradient(135deg, $color-ochre-light 0%, $color-cream 100%);
+    border-color: $color-ochre;
+  }
+
+  // Container query: cuando el cuerpo del articulo es ancho,
+  // aplica una capitular al primer parrafo
+  @container article-main (min-width: 700px) {
+    .article__lead::first-letter {
+      float: left;
+      padding-right: $spacing-xs;
+      font-family: $font-family-heading;
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 0.9;
+      color: $color-clay;
+    }
+  }
+}

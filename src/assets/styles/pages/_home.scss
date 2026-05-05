@@ -1,0 +1,347 @@
+// Pagina de portada (formato cartel)
+// Maquetada con CSS Grid (con fallback a flex via @supports),
+// container queries en las tarjetas y capas de cascada para
+// organizar la especificidad.
+
+@layer base, components, overrides;
+
+@layer base {
+  .home-hero {
+    position: relative;
+    padding: $spacing-2xl 0;
+    overflow: hidden;
+    color: $color-white;
+    background:
+      linear-gradient(
+        135deg,
+        overlay-color($color-ink, 0.78),
+        overlay-color($color-clay-dark, 0.6)
+      ),
+      radial-gradient(ellipse at top right, $color-ochre 0%, $color-clay 35%, $color-wood 70%, $color-ink 100%);
+
+    @include respond-to("md") {
+      padding: $spacing-3xl 0;
+    }
+  }
+
+  .home-hero__container {
+    @include container;
+  }
+
+  // Maquetacion de respaldo cuando el navegador no soporta grid
+  .home-hero__poster {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  // Maquetacion moderna con CSS Grid
+  @supports (display: grid) {
+    .home-hero__poster {
+      display: grid;
+      grid-template-areas:
+        "badge"
+        "title"
+        "lead"
+        "meta"
+        "cta"
+        "art";
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+
+      @include respond-to("md") {
+        grid-template-areas:
+          "badge   badge   art"
+          "title   title   art"
+          "lead    meta    art"
+          "cta     cta     art";
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: $spacing-lg;
+        align-items: start;
+      }
+
+      @include respond-to("lg") {
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: $spacing-xl;
+      }
+    }
+  }
+
+  .home-hero__badge {
+    display: inline-flex;
+    grid-area: badge;
+    gap: $spacing-xs;
+    align-items: center;
+    align-self: start;
+    justify-self: start;
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-ink;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: $color-ochre-light;
+    border-radius: 999px;
+  }
+
+  .home-hero__title {
+    @include heading($font-size-3xl);
+
+    grid-area: title;
+    margin: 0;
+    color: $color-white;
+
+    @include respond-to("md") {
+      font-size: $font-size-hero;
+    }
+
+    @include respond-to("lg") {
+      font-size: 5.5rem;
+    }
+
+    em {
+      font-style: italic;
+      color: $color-ochre-light;
+    }
+  }
+
+  .home-hero__lead {
+    grid-area: lead;
+    margin: 0;
+    font-size: $font-size-lg;
+    color: $color-cream;
+  }
+
+  .home-hero__meta {
+    grid-area: meta;
+    padding: $spacing-md;
+    color: $color-cream;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-left: 4px solid $color-ochre;
+    border-radius: $site-radius;
+    backdrop-filter: blur(6px);
+
+    dt {
+      font-size: $font-size-sm;
+      font-weight: 600;
+      color: $color-ochre-light;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    dd {
+      margin: 0 0 $spacing-xs;
+      font-family: $font-family-heading;
+      font-size: $font-size-lg;
+      color: $color-white;
+    }
+  }
+
+  .home-hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    grid-area: cta;
+    gap: $spacing-sm;
+  }
+
+  .home-hero__art {
+    position: relative;
+    grid-area: art;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: $site-radius-lg;
+    box-shadow: $shadow-lg;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: linear-gradient(
+        180deg,
+        transparent 60%,
+        overlay-color($color-clay-dark, 0.4) 100%
+      );
+    }
+  }
+}
+
+// Barra de informacion rapida bajo el hero
+@layer components {
+  .home-info {
+    @include section-padding;
+
+    background-color: $color-cream;
+  }
+
+  .home-info__container {
+    @include container;
+  }
+
+  .home-info__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+
+    @include respond-to("md") {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .home-info__item {
+    display: flex;
+    gap: $spacing-sm;
+    align-items: flex-start;
+    padding: $spacing-md;
+    background-color: $color-white;
+    border-radius: $site-radius-lg;
+    box-shadow: $shadow-sm;
+
+    i {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      font-size: $font-size-xl;
+      line-height: 48px;
+      color: $color-clay-dark;
+      text-align: center;
+      background-color: $color-cream;
+      border-radius: 50%;
+    }
+
+    h3 {
+      margin: 0 0 $spacing-xs;
+      font-size: $font-size-lg;
+    }
+
+    p {
+      margin: 0;
+      color: $color-text-light;
+    }
+  }
+
+  // Reticula de tarjetas destacadas con container query
+  .home-highlights {
+    @include section-padding;
+  }
+
+  .home-highlights__container {
+    @include container;
+  }
+
+  .home-highlights__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+
+    @include respond-to("md") {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to("lg") {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  // Cada tarjeta adapta su maquetacion segun su propio ancho,
+  // no segun el viewport, gracias a la container query
+  .home-highlight {
+    @include container-context(highlight-card);
+    @include hover-lift(1.01);
+
+    overflow: hidden;
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $site-radius-lg;
+
+    &__media {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background-color: $color-cream;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform $transition-slow;
+      }
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-xs;
+      padding: $spacing-md;
+    }
+
+    &__tag {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 2px 10px;
+      font-size: $font-size-sm;
+      font-weight: 600;
+      color: $color-clay-dark;
+      background-color: $color-ochre-light;
+      border-radius: 999px;
+    }
+
+    &__title {
+      margin: 0;
+      font-size: $font-size-lg;
+    }
+
+    &__text {
+      margin: 0;
+      color: $color-text-light;
+    }
+
+    &:hover img {
+      transform: scale(1.04);
+    }
+
+    // Cuando la tarjeta es lo bastante ancha, pasa a maquetacion horizontal
+    @container highlight-card (min-width: 480px) {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+
+      .home-highlight__media {
+        height: 100%;
+        aspect-ratio: auto;
+      }
+    }
+  }
+}
+
+// Pequeños ajustes sobre los componentes de Bootstrap
+@layer overrides {
+  .home-hero {
+    .btn-primary {
+      color: $color-white;
+      background-color: $color-clay;
+      border-color: $color-clay;
+
+      &:hover,
+      &:focus {
+        color: $color-white;
+        background-color: $color-clay-dark;
+        border-color: $color-clay-dark;
+      }
+    }
+
+    .btn-outline-light {
+      border-color: $color-cream;
+
+      &:hover {
+        color: $color-ink;
+        background-color: $color-cream-light;
+        border-color: $color-cream-light;
+      }
+    }
+  }
+}

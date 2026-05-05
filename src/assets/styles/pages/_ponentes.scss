@@ -1,0 +1,238 @@
+// Pagina de ponentes
+// Reticula montada con flexbox (sin las clases .row / .col-* de Bootstrap).
+// Cada tarjeta usa una container query para adaptar su maquetacion al
+// ancho del propio contenedor.
+
+.speakers {
+  @include section-padding;
+}
+
+.speakers__container {
+  @include container;
+}
+
+.speakers__intro {
+  max-width: 720px;
+  margin: 0 auto $spacing-2xl;
+  text-align: center;
+}
+
+// Filtros de disciplina (combinan BEM con btn-group de Bootstrap)
+.speakers__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  justify-content: center;
+  margin-bottom: $spacing-xl;
+}
+
+// Reticula con flexbox
+.speakers__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-lg;
+}
+
+// Cada tarjeta de ponente es un item flex que crece para llenar la fila
+.speaker {
+  @include container-context(speaker-card);
+  @include hover-lift(1.01);
+
+  display: flex;
+  flex: 1 1 280px;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $site-radius-lg;
+
+  &__photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: $color-cream;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: $spacing-sm;
+    left: $spacing-sm;
+    padding: 2px 10px;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-white;
+    background-color: $color-clay;
+    border-radius: 999px;
+  }
+
+  &__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: $spacing-xs;
+    padding: $spacing-md;
+  }
+
+  &__name {
+    margin: 0;
+    font-size: $font-size-lg;
+    color: $color-ink;
+  }
+
+  &__role {
+    margin: 0;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-clay-dark;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__bio {
+    margin: $spacing-xs 0 0;
+    color: $color-text-light;
+  }
+
+  &__footer {
+    display: flex;
+    gap: $spacing-sm;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: $spacing-sm;
+    margin-top: auto;
+    border-top: 1px solid $color-border;
+  }
+
+  &__topic {
+    display: flex;
+    gap: $spacing-xs;
+    align-items: center;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+
+    i {
+      color: $color-clay;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: $spacing-xs;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: $color-clay-dark;
+    background-color: $color-cream;
+    border-radius: 50%;
+    transition: background-color $transition-fast, color $transition-fast;
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-clay;
+    }
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+  }
+
+  // Cuando la tarjeta es lo bastante ancha, se pasa a una maquetacion
+  // horizontal (foto a la izquierda y texto a la derecha)
+  @container speaker-card (min-width: 520px) {
+    flex-direction: row;
+
+    .speaker__photo {
+      flex: 0 0 220px;
+      height: auto;
+      aspect-ratio: auto;
+    }
+
+    .speaker__body {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+// Variante destacada (charla inaugural)
+.speaker--keynote {
+  flex-basis: 100%;
+  background: linear-gradient(135deg, $color-cream 0%, $color-ochre-light 100%);
+
+  .speaker__name {
+    font-size: $font-size-xl;
+  }
+
+  .speaker__badge {
+    background-color: $color-wood;
+  }
+}
+
+// Programa de actividades bajo la reticula de ponentes
+.activities {
+  @include section-padding;
+
+  background-color: $color-cream;
+}
+
+.activities__container {
+  @include container;
+}
+
+.activities__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+}
+
+.activity {
+  display: flex;
+  flex: 1 1 240px;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding: $spacing-md;
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $site-radius;
+
+  &__time {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-clay-dark;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-lg;
+  }
+
+  &__description {
+    margin: 0;
+    color: $color-text-light;
+  }
+
+  &__location {
+    display: flex;
+    gap: $spacing-xs;
+    align-items: center;
+    margin-top: auto;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+
+    i {
+      color: $color-clay;
+    }
+  }
+}

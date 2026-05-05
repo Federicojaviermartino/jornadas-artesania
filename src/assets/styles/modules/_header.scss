@@ -1,0 +1,57 @@
+// Cabecera y navegacion principal
+// Combina nomenclatura BEM con utilidades de la navbar de Bootstrap
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background-color: $color-cream-light;
+  border-bottom: 1px solid $color-border;
+  box-shadow: $shadow-sm;
+
+  &__brand {
+    display: flex;
+    gap: $spacing-xs;
+    align-items: center;
+    font-family: $font-family-heading;
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $color-ink;
+
+    i {
+      color: $color-clay;
+    }
+
+    &:hover {
+      color: $color-clay-dark;
+    }
+  }
+
+  &__link {
+    position: relative;
+    font-weight: 600;
+    color: $color-text;
+    transition: color $transition-fast;
+
+    &:hover,
+    &.active {
+      color: $color-clay-dark;
+    }
+
+    &.active::after {
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      width: 24px;
+      height: 3px;
+      content: "";
+      background-color: $color-clay;
+      border-radius: 2px;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__cta {
+    margin-left: $spacing-sm;
+  }
+}

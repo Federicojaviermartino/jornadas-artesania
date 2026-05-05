@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Reserva tu plaza en las Jornadas de Artesania. Formulario de inscripcion, datos de contacto, mapa y horarios."
+    />
+    <link rel="stylesheet" type="text/css" href="./assets/styles/main.scss" />
+    <script type="module" src="./assets/scripts/main.js"></script>
+    <title>Inscripcion y contacto | Jornadas de Artesania</title>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <include src="./views/header.html"></include>
+
+    <main id="main-content">
+      <section class="contact-hero" aria-labelledby="contact-hero-title">
+        <div class="contact-hero__container">
+          <div>
+            <h1 id="contact-hero-title" class="contact-hero__title">Reserva tu plaza</h1>
+            <p class="contact-hero__subtitle">
+              La inscripcion es gratuita, pero las plazas son limitadas. Rellena el formulario y nosotros te confirmamos por correo en menos de 48 horas.
+            </p>
+          </div>
+          <div class="contact-hero__visual" aria-hidden="true">
+            <i class="fas fa-tools"></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-form" aria-labelledby="contact-form-title">
+        <div class="contact-form__container">
+          <div class="contact-form__intro">
+            <h2 id="contact-form-title">Formulario de inscripcion</h2>
+            <p>
+              Indicanos los talleres en los que quieres participar. Si tienes preferencia de horario o necesidades de accesibilidad, cuentanoslo en el campo de comentarios.
+            </p>
+
+            <div id="contact-form-alert" class="contact-form__alert" aria-live="polite">
+              <i class="fas fa-check-circle me-2" aria-hidden="true"></i>
+              Solicitud enviada correctamente. Te contestamos pronto.
+            </div>
+
+            <form
+              id="contact-form"
+              class="needs-validation"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              novalidate
+            >
+              <input type="hidden" name="form-name" value="inscripcion-jornadas" />
+              <p class="d-none">
+                <label>No rellenar: <input name="bot-field" /></label>
+              </p>
+
+              <div class="contact-form__row">
+                <div class="contact-form__group">
+                  <label for="contact-name" class="contact-form__label">Nombre y apellidos</label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="nombre"
+                    class="contact-form__input form-control"
+                    placeholder="Como te llamas"
+                    required
+                    minlength="2"
+                  />
+                  <div class="invalid-feedback">Necesitamos tu nombre completo.</div>
+                </div>
+
+                <div class="contact-form__group">
+                  <label for="contact-email" class="contact-form__label">Correo electronico</label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    class="contact-form__input form-control"
+                    placeholder="tu@correo.com"
+                    required
+                  />
+                  <div class="invalid-feedback">Indica un correo valido para confirmarte la plaza.</div>
+                </div>
+              </div>
+
+              <div class="contact-form__group">
+                <label for="contact-workshop" class="contact-form__label">Taller que te interesa</label>
+                <select
+                  id="contact-workshop"
+                  name="taller"
+                  class="contact-form__select form-select"
+                  required
+                >
+                  <option value="">Selecciona una opcion</option>
+                  <option value="ceramica">Ceramica con Margarita Olivares (viernes)</option>
+                  <option value="encaje">Encaje de bolillos con Lucia Hernandez (sabado)</option>
+                  <option value="esmaltes">Esmaltes con Pere Montserrat (sabado)</option>
+                  <option value="vitral">Vitrales emplomados con Iria Lago (sabado)</option>
+                  <option value="madera">Carpinteria fina con David Pereira (domingo)</option>
+                  <option value="general">Solo asistencia general (sin taller)</option>
+                </select>
+                <div class="invalid-feedback">Elige el taller al que te quieres apuntar.</div>
+              </div>
+
+              <div class="contact-form__group">
+                <label for="contact-message" class="contact-form__label">Comentarios</label>
+                <textarea
+                  id="contact-message"
+                  name="mensaje"
+                  class="contact-form__textarea form-control"
+                  placeholder="Cuentanos si necesitas accesibilidad, si vienes con niños, o cualquier otra cosa que debamos saber."
+                ></textarea>
+              </div>
+
+              <div class="contact-form__group">
+                <div class="form-check contact-form__check">
+                  <input
+                    type="checkbox"
+                    id="contact-consent"
+                    name="consent"
+                    class="form-check-input"
+                    required
+                  />
+                  <label for="contact-consent" class="form-check-label">
+                    Acepto la politica de privacidad y autorizo el tratamiento de mis datos para gestionar la inscripcion.
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg contact-form__submit">
+                <i class="fas fa-paper-plane me-2" aria-hidden="true"></i>
+                Enviar solicitud
+              </button>
+            </form>
+          </div>
+
+          <aside class="contact-form__info-card" aria-label="Informacion de contacto">
+            <h3>Tambien puedes</h3>
+            <ul>
+              <li>
+                <i class="fas fa-phone" aria-hidden="true"></i>
+                <div>
+                  <strong>Llamar al 900 100 100</strong>
+                  <span>De lunes a viernes, de 9:00 a 14:00</span>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                <div>
+                  <strong>Escribir un correo</strong>
+                  <span>info@jornadas-artesania.org</span>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-comments" aria-hidden="true"></i>
+                <div>
+                  <strong>Pasar por la oficina</strong>
+                  <span>Casa de Cultura, plaza Mayor. Sin cita previa.</span>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-handshake" aria-hidden="true"></i>
+                <div>
+                  <strong>Colaborar como voluntario</strong>
+                  <span>Solicita el formulario especifico por correo.</span>
+                </div>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="contact-map" aria-labelledby="contact-map-title">
+        <div class="contact-map__container">
+          <header class="section-title">
+            <h2 id="contact-map-title" class="section-title__heading">Como llegar</h2>
+            <hr class="section-title__line" />
+            <p class="section-title__description">
+              La Casa de Cultura esta en pleno centro, a 200 metros del aparcamiento publico y a 5 minutos andando de la estacion de autobuses.
+            </p>
+          </header>
+          <div class="contact-map__embed" role="img" aria-label="Mapa decorativo de la zona">
+            <!-- Patron decorativo (puede sustituirse por un mapa real) -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <include src="./views/footer.html"></include>
+  </body>
+</html>

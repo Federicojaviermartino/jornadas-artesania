@@ -1,0 +1,21 @@
+// Jornadas de Artesania
+// Hoja de estilos principal.
+// Orden de carga:
+//   1. Variables (las sobreescrituras de Bootstrap deben ir antes del import)
+//   2. Mixins
+//   3. Dependencias externas (Bootstrap, FontAwesome, Fontsource)
+//   4. Modulos del proyecto (cabecera, pie, base)
+//   5. Estilos especificos de cada pagina
+
+@import "variables";
+@import "mixins";
+@import "dependencies";
+
+@import "modules/base";
+@import "modules/header";
+@import "modules/footer";
+
+@import "pages/home";
+@import "pages/ponentes";
+@import "pages/articulo";
+@import "pages/contacto";

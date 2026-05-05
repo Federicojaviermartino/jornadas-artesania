@@ -1,0 +1,254 @@
+// Pagina de inscripcion y contacto (contenido libre)
+// Aqui se concentran las nuevas unidades de viewport (dvh, lvh, cqi)
+// y los nuevos espacios de color (oklch, hwb, display-p3).
+
+.contact-hero {
+  // Unidad dvh: la altura se ajusta cuando aparece o desaparece la
+  // barra del navegador en moviles
+  min-height: 60dvh;
+  padding: $spacing-3xl 0 $spacing-2xl;
+
+  // Color OKLCH (perceptualmente uniforme).
+  // El degradado anterior con variables hex sirve de fallback en
+  // navegadores que no soportan OKLCH.
+  color: $color-white;
+  background: linear-gradient(135deg, $color-clay-dark 0%, $color-wood 100%);
+  background: linear-gradient(135deg, oklch(45% 0.16 45) 0%, oklch(35% 0.07 45) 100%);
+
+  &__container {
+    @include container;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+    align-items: center;
+
+    @include respond-to("md") {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__title {
+    @include heading($font-size-3xl);
+
+    margin-bottom: $spacing-sm;
+    color: $color-white;
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    // Color HWB para el texto de acento
+    color: hwb(38 80% 5%);
+  }
+
+  &__visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    background:
+      radial-gradient(circle at 30% 30%, oklch(78% 0.14 80) 0%, transparent 60%),
+      radial-gradient(circle at 70% 70%, oklch(60% 0.18 30) 0%, transparent 55%),
+      oklch(25% 0.04 45);
+    border-radius: 50%;
+
+    // Display-P3 para conseguir un brillo mas saturado en pantallas
+    // que lo soportan; los demas navegadores usan la declaracion previa.
+    box-shadow: 0 0 60px color(display-p3 1 0.6 0.2 / 0.4);
+
+    i {
+      font-size: 6rem;
+      // cqi: tamaño relativo al ancho del contenedor
+      font-size: clamp(4rem, 25cqi, 8rem);
+      color: $color-white;
+    }
+  }
+}
+
+// Bloque del formulario
+.contact-form {
+  @include container-context(contact-form);
+  @include section-padding;
+
+  &__container {
+    @include container;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+
+    @include respond-to("lg") {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  &__intro {
+    h2 {
+      margin-bottom: $spacing-sm;
+      font-size: $font-size-2xl;
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: $color-text-light;
+    }
+  }
+
+  &__group {
+    margin-bottom: $spacing-md;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-weight: 600;
+    color: $color-ink;
+  }
+
+  &__input,
+  &__textarea,
+  &__select {
+    display: block;
+    width: 100%;
+    padding: $spacing-xs $spacing-sm;
+    font-family: $font-family-body;
+    font-size: $font-size-base;
+    color: $color-text;
+    background-color: $color-white;
+    border: 2px solid $color-border;
+    border-radius: $site-radius;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:focus {
+      outline: none;
+      // Tono OKLCH armonico para el anillo de foco
+      border-color: oklch(70% 0.15 45);
+      box-shadow: 0 0 0 3px oklch(85% 0.08 45 / 0.5);
+    }
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+  }
+
+  &__textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  &__check {
+    display: flex;
+    gap: $spacing-xs;
+    align-items: flex-start;
+    font-size: $font-size-sm;
+    color: $color-text-light;
+  }
+
+  &__submit {
+    margin-top: $spacing-sm;
+  }
+
+  // Tarjeta lateral con datos practicos
+  &__info-card {
+    padding: $spacing-lg;
+    background: linear-gradient(160deg, $color-cream 0%, $color-ochre-light 100%);
+    border-radius: $site-radius-lg;
+
+    h3 {
+      margin-bottom: $spacing-md;
+      font-size: $font-size-xl;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    li {
+      display: flex;
+      gap: $spacing-sm;
+      align-items: flex-start;
+      padding: $spacing-sm 0;
+      border-bottom: 1px solid rgba(184, 92, 44, 0.2);
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      i {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        font-size: $font-size-base;
+        line-height: 36px;
+        color: $color-white;
+        text-align: center;
+        background-color: $color-clay;
+        border-radius: 50%;
+      }
+
+      strong {
+        display: block;
+        color: $color-ink;
+      }
+
+      span {
+        color: $color-text-light;
+      }
+    }
+  }
+
+  // Container query: cuando el panel del formulario es lo bastante
+  // ancho, los campos nombre y email pasan a dos columnas
+  @container contact-form (min-width: 600px) {
+    .contact-form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-md;
+    }
+  }
+}
+
+// Bloque inferior con el "como llegar"
+.contact-map {
+  @include section-padding;
+
+  background-color: $color-cream;
+}
+
+.contact-map__container {
+  @include container;
+}
+
+.contact-map__embed {
+  // lvh: usa la altura mas grande posible que ofrece el navegador,
+  // asi se evitan saltos cuando aparece o desaparece la barra del movil
+  min-height: max(40lvh, 320px);
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      hwb(38 75% 0% / 1) 0,
+      hwb(38 75% 0% / 1) 10px,
+      hwb(38 80% 0% / 1) 10px,
+      hwb(38 80% 0% / 1) 20px
+    );
+  border-radius: $site-radius-lg;
+}
+
+// Banner de confirmacion del formulario (lo activa el js al enviar)
+.contact-form__alert {
+  display: none;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  font-weight: 600;
+  color: $color-white;
+  // Verde OKLCH para la confirmacion
+  background-color: oklch(55% 0.14 145);
+  border-radius: $site-radius;
+
+  &.is-visible {
+    display: block;
+  }
+}

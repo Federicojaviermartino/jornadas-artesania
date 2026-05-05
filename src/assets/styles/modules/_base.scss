@@ -1,0 +1,154 @@
+// Reset basico y estilos generales
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: $font-family-body;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $color-text;
+  background-color: $color-cream-light;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: $color-clay-dark;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-clay;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-heading;
+  line-height: $line-height-heading;
+  color: $color-ink;
+}
+
+// Enlace para saltar al contenido principal (accesibilidad)
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: $spacing-sm;
+  z-index: 2000;
+  padding: $spacing-xs $spacing-sm;
+  font-weight: 600;
+  color: $color-white;
+  background-color: $color-clay-dark;
+  border-radius: $site-radius;
+  transition: top $transition-fast;
+
+  &:focus {
+    top: $spacing-sm;
+    color: $color-white;
+  }
+}
+
+// Patron de titulo de seccion reutilizado en todas las paginas
+.section-title {
+  margin-bottom: $spacing-xl;
+  text-align: center;
+
+  &__heading {
+    @include heading($font-size-2xl);
+
+    margin-bottom: $spacing-sm;
+
+    @include respond-to("md") {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__line {
+    width: 60px;
+    height: 3px;
+    margin: 0 auto $spacing-sm;
+    background-color: $color-clay;
+    border: 0;
+    opacity: 1;
+  }
+
+  &__description {
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: $font-size-lg;
+    color: $color-text-light;
+  }
+}
+
+// Cabecera de las paginas interiores
+.page-banner {
+  padding: ($spacing-3xl + $spacing-lg) 0 $spacing-2xl;
+  color: $color-white;
+  text-align: center;
+  background:
+    linear-gradient(
+      135deg,
+      overlay-color($color-ink, 0.85),
+      overlay-color($color-clay-dark, 0.75)
+    ),
+    radial-gradient(circle at 20% 30%, $color-clay 0%, $color-wood 60%, $color-ink 100%);
+
+  &__title {
+    @include heading($font-size-3xl);
+
+    margin-bottom: $spacing-sm;
+    color: $color-white;
+  }
+
+  &__subtitle {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: $font-size-lg;
+    color: $color-cream;
+  }
+
+  &__breadcrumb {
+    margin-top: $spacing-md;
+    font-size: $font-size-sm;
+    color: $color-cream;
+
+    a {
+      color: $color-cream;
+
+      &:hover {
+        color: $color-white;
+      }
+    }
+  }
+}
+
+// Utilidades de color
+.text-clay {
+  color: $color-clay;
+}
+
+.bg-cream {
+  background-color: $color-cream;
+}
+
+.bg-cream-light {
+  background-color: $color-cream-light;
+}

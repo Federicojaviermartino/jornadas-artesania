@@ -1,0 +1,44 @@
+{
+  "extends": [
+    "stylelint-config-recommended-scss",
+    "stylelint-config-recess-order"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "selector-class-pattern": "^.[a-z]([a-z0-9-]+)?(__([a-z0-9]+-?)+)?(--([a-z0-9]+-?)+){0,2}$",
+    "max-nesting-depth": 4,
+    "no-descending-specificity": null,
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["use", "forward", "include", "mixin", "function", "if", "else", "each", "for", "while", "return", "extend", "at-root", "debug", "warn", "error", "tailwind", "apply", "screen", "responsive", "variants", "container", "layer", "supports"]
+      }
+    ],
+    "scss/load-partial-extension": null,
+    "declaration-block-no-duplicate-properties": [
+      true,
+      {
+        "ignore": ["consecutive-duplicates-with-different-values"]
+      }
+    ],
+    "color-no-invalid-hex": true,
+    "font-family-no-duplicate-names": true,
+    "block-no-empty": true,
+    "no-empty-source": true,
+    "scss/dollar-variable-pattern": "^[a-z][a-z0-9-]*$",
+    "scss/no-global-function-names": null,
+    "comment-no-empty": true,
+    "no-duplicate-selectors": true,
+    "shorthand-property-no-redundant-values": true,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "media-feature-name-no-unknown": [
+      true,
+      {
+        "ignoreMediaFeatureNames": ["min-width", "max-width"]
+      }
+    ]
+  }
+}
