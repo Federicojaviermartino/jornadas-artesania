@@ -6,7 +6,7 @@ Proyecto desarrollado para la asignatura **Herramientas HTML y CSS II** de la Un
 
 ## Demo
 
-<https://jornadas-artesania.netlify.app/>
+<https://jornadas-artesania-uoc.netlify.app/>
 
 ## Video explicativo
 
