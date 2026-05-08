@@ -344,4 +344,35 @@
       }
     }
   }
+
+  // Scrim oscuro tras los pies del carrusel para garantizar legibilidad
+  // del texto blanco sobre cualquier fotografia
+  .home-carousel .carousel-item {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 45%;
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(
+        to top,
+        overlay-color($color-ink, 0.78) 0%,
+        overlay-color($color-ink, 0.45) 45%,
+        transparent 100%
+      );
+    }
+  }
+
+  .home-carousel .carousel-caption {
+    z-index: 2;
+    text-shadow: 0 2px 6px overlay-color($color-ink, 0.6);
+
+    h3 {
+      color: $color-white;
+    }
+  }
 }

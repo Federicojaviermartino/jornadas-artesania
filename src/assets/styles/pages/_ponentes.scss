@@ -126,6 +126,9 @@
   &__links {
     display: flex;
     gap: $spacing-xs;
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }
 
   &__link {
