@@ -42,25 +42,29 @@
   }
 
   &__visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
     aspect-ratio: 1;
-    background:
-      radial-gradient(circle at 30% 30%, oklch(78% 0.14 80) 0%, transparent 60%),
-      radial-gradient(circle at 70% 70%, oklch(60% 0.18 30) 0%, transparent 55%),
-      oklch(25% 0.04 45);
+    overflow: hidden;
+    background-image: url("../images/poster.jpg");
+    background-position: center;
+    background-size: cover;
     border-radius: 50%;
 
     // Display-P3 para conseguir un brillo mas saturado en pantallas
     // que lo soportan; los demas navegadores usan la declaracion previa.
     box-shadow: 0 0 60px color(display-p3 1 0.6 0.2 / 0.4);
 
-    i {
-      font-size: 6rem;
-      // cqi: tamaño relativo al ancho del contenedor
-      font-size: clamp(4rem, 25cqi, 8rem);
-      color: $color-white;
+    // Velo translucido en OKLCH para integrar la foto con la paleta
+    &::after {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      background: radial-gradient(
+        circle at 30% 30%,
+        transparent 30%,
+        oklch(35% 0.12 45 / 0.45) 100%
+      );
     }
   }
 }
@@ -222,6 +226,7 @@
 }
 
 .contact-map__embed {
+  position: relative;
   // lvh: usa la altura mas grande posible que ofrece el navegador,
   // asi se evitan saltos cuando aparece o desaparece la barra del movil
   min-height: max(40lvh, 320px);
@@ -234,7 +239,31 @@
       hwb(38 80% 0% / 1) 10px,
       hwb(38 80% 0% / 1) 20px
     );
+  border: 1px solid $color-border;
   border-radius: $site-radius-lg;
+  box-shadow: $shadow-md;
+
+  iframe {
+    display: block;
+    width: 100%;
+    min-height: max(40lvh, 320px);
+    border: 0;
+  }
+}
+
+.contact-map__attribution {
+  margin: $spacing-sm 0 0;
+  font-size: $font-size-sm;
+  text-align: right;
+
+  a {
+    color: $color-clay-dark;
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-clay;
+    }
+  }
 }
 
 // Banner de confirmacion del formulario (lo activa el js al enviar)
