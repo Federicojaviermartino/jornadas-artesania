@@ -382,3 +382,14 @@
     color: $color-white;
   }
 }
+
+// Color del titulo del hero fuera de la capa para que gane al
+// selector "h1" sin capa de _base.scss (las reglas sin capa siempre
+// ganan a las reglas dentro de @layer)
+.home-hero__title {
+  color: $color-white;
+
+  em {
+    color: $color-ochre-light;
+  }
+}
