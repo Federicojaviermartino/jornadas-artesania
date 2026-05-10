@@ -10,7 +10,7 @@ Proyecto desarrollado para la asignatura **Herramientas HTML y CSS II** de la Un
 
 ## Video explicativo
 
-<https://drive.google.com/file/d/1hi6aCHhv5zoVTrXDki7WS6fJmAYFyf_f/view?usp=sharing>
+<https://drive.google.com/file/d/1zxxrH8ng4ehw7mv7rI1opTc9AcKAyhDo/view?usp=drive_link>
 
 ## Paginas del sitio
 
@@ -126,7 +126,7 @@ Encadena `clean -> stylelint -> parcel:build` y deja la salida lista en `dist/`.
 
 ## Estructura de carpetas
 
-```
+```text
 jornadas-artesania-uoc/
 |-- src/
 |   |-- index.html
