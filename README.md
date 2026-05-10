@@ -10,7 +10,7 @@ Proyecto desarrollado para la asignatura **Herramientas HTML y CSS II** de la Un
 
 ## Video explicativo
 
-El enlace al video se incluye en los comentarios de la entrega de la PEC y en el documento de evaluacion por pares.
+<https://drive.google.com/file/d/1hi6aCHhv5zoVTrXDki7WS6fJmAYFyf_f/view?usp=sharing>
 
 ## Paginas del sitio
 
